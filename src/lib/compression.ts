@@ -16,22 +16,27 @@ export interface TarotReadingPayload {
 }
 
 export function encodePayload(payload: TarotReadingPayload): string {
-  const jsonStr = JSON.stringify(payload);
-  return LZString.compressToEncodedURIComponent(jsonStr);
+  try {
+    const jsonString = JSON.stringify(payload);
+    return Buffer.from(jsonString, 'utf-8').toString('base64url');
+  } catch (e) {
+    console.error("Failed to encode payload:", e);
+    return "";
+  }
 }
 
 export function decodePayload(compressed: string): TarotReadingPayload | null {
   try {
-    // 1. Next.js App Router params remain URL-encoded, so "%2B" must become "+"
-    // 2. Chat apps sometimes mutate "+" into spaces, so we replace spaces with "+"
-    const decodedUri = decodeURIComponent(compressed);
-    const fixed = decodedUri.replace(/ /g, '+');
+    const jsonString = Buffer.from(compressed, 'base64url').toString('utf-8');
+    const parsed = JSON.parse(jsonString);
+
+    if (!parsed || !parsed.cards || !Array.isArray(parsed.cards)) {
+      return null;
+    }
     
-    const jsonStr = LZString.decompressFromEncodedURIComponent(fixed);
-    if (!jsonStr) return null;
-    return JSON.parse(jsonStr) as TarotReadingPayload;
+    return parsed as TarotReadingPayload;
   } catch (error) {
-    console.error("Failed to decode payload", error);
+    console.error("Failed to decode base64 payload.", error);
     return null;
   }
 }
