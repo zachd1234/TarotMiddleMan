@@ -18,7 +18,7 @@ export interface TarotReadingPayload {
 export function encodePayload(payload: TarotReadingPayload): string {
   try {
     const jsonString = JSON.stringify(payload);
-    return Buffer.from(jsonString, 'utf-8').toString('base64url');
+    return LZString.compressToEncodedURIComponent(jsonString);
   } catch (e) {
     console.error("Failed to encode payload:", e);
     return "";
@@ -27,7 +27,13 @@ export function encodePayload(payload: TarotReadingPayload): string {
 
 export function decodePayload(compressed: string): TarotReadingPayload | null {
   try {
-    const jsonString = Buffer.from(compressed, 'base64url').toString('utf-8');
+    // Next.js params remain URL encoded sometimes, and chats mangle + to spaces
+    const decodedUri = decodeURIComponent(compressed);
+    const fixedUrl = decodedUri.replace(/ /g, '+');
+
+    const jsonString = LZString.decompressFromEncodedURIComponent(fixedUrl);
+    if (!jsonString) return null;
+
     const parsed = JSON.parse(jsonString);
 
     if (!parsed || !parsed.cards || !Array.isArray(parsed.cards)) {
@@ -36,7 +42,7 @@ export function decodePayload(compressed: string): TarotReadingPayload | null {
     
     return parsed as TarotReadingPayload;
   } catch (error) {
-    console.error("Failed to decode base64 payload.", error);
+    console.error("Failed to decompress payload.", error);
     return null;
   }
 }

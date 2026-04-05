@@ -28,7 +28,7 @@ const dummyData = {
 const jsonString = JSON.stringify(dummyData);
 
 // 2. Compress the string into a URL-safe Base64 string!
-const compressed = Buffer.from(jsonString).toString('base64url');
+const compressed = LZString.compressToEncodedURIComponent(jsonString);
 
 console.log("-----------------------------------------");
 console.log("Generated Link:");
