@@ -1,65 +1,7 @@
-import Image from "next/image";
+import { redirect } from 'next/navigation';
 
 export default function Home() {
-  return (
-    <div className="flex flex-col flex-1 items-center justify-center bg-zinc-50 font-sans dark:bg-black">
-      <main className="flex flex-1 w-full max-w-3xl flex-col items-center justify-between py-32 px-16 bg-white dark:bg-black sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={100}
-          height={20}
-          priority
-        />
-        <div className="flex flex-col items-center gap-6 text-center sm:items-start sm:text-left">
-          <h1 className="max-w-xs text-3xl font-semibold leading-10 tracking-tight text-black dark:text-zinc-50">
-            To get started, edit the page.tsx file.
-          </h1>
-          <p className="max-w-md text-lg leading-8 text-zinc-600 dark:text-zinc-400">
-            Looking for a starting point or more instructions? Head over to{" "}
-            <a
-              href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Templates
-            </a>{" "}
-            or the{" "}
-            <a
-              href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-              className="font-medium text-zinc-950 dark:text-zinc-50"
-            >
-              Learning
-            </a>{" "}
-            center.
-          </p>
-        </div>
-        <div className="flex flex-col gap-4 text-base font-medium sm:flex-row">
-          <a
-            className="flex h-12 w-full items-center justify-center gap-2 rounded-full bg-foreground px-5 text-background transition-colors hover:bg-[#383838] dark:hover:bg-[#ccc] md:w-[158px]"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={16}
-              height={16}
-            />
-            Deploy Now
-          </a>
-          <a
-            className="flex h-12 w-full items-center justify-center rounded-full border border-solid border-black/[.08] px-5 transition-colors hover:border-transparent hover:bg-black/[.04] dark:border-white/[.145] dark:hover:bg-[#1a1a1a] md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Documentation
-          </a>
-        </div>
-      </main>
-    </div>
-  );
+  // Test payload generated from our script
+  const testPayload = "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";
+  redirect(`/t/zach_derhake/${testPayload}`);
 }
