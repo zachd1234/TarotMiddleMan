@@ -61,12 +61,20 @@ export default function TarotClient({ data }: { data: TarotReadingPayload }) {
       </div>
 
       {/* Sticky Wabi CTA */}
-      <div className="fixed bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/80 to-transparent flex justify-center pb-8 border-t border-white/5 backdrop-blur-sm pointer-events-none z-10">
+      <div className="fixed bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/90 to-transparent flex justify-center pb-8 border-t border-white/5 backdrop-blur-md pointer-events-none z-10">
         <a 
           href="https://wabi.ai/@zach_derhake/twitter-tarot-1042500?_v=4" 
-          className="block w-full max-w-sm bg-white text-black text-center font-bold text-lg py-4 rounded-[32px] shadow-[0_0_20px_rgba(255,255,255,0.15)] hover:scale-[1.02] hover:bg-gray-100 transition-all pointer-events-auto"
+          className="relative group block w-full max-w-sm pointer-events-auto"
         >
-          Get Your Reading
+          {/* Outer glow aura */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-yellow-600 to-yellow-400 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+          
+          {/* Main button body */}
+          <div className="relative flex items-center justify-center gap-3 bg-[#0c0c0c] border border-yellow-600/50 text-yellow-500 text-center font-serif font-bold uppercase tracking-widest text-sm md:text-base py-4 rounded-full transition-all duration-300 group-hover:bg-[#151515] group-hover:text-yellow-400 group-hover:-translate-y-0.5">
+            <span className="text-lg opacity-70">✵</span>
+            <span>Get Your Reading</span>
+            <span className="text-lg opacity-70">✵</span>
+          </div>
         </a>
       </div>
 
