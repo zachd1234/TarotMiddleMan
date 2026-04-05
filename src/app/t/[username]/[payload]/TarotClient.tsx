@@ -72,7 +72,7 @@ export default function TarotClient({ data }: { data: TarotReadingPayload }) {
           {/* Main button body */}
           <div className="relative flex items-center justify-center gap-3 bg-[#0c0c0c] border border-yellow-600/50 text-yellow-500 text-center font-serif font-bold uppercase tracking-widest text-sm md:text-base py-4 rounded-full transition-all duration-300 group-hover:bg-[#151515] group-hover:text-yellow-400 group-hover:-translate-y-0.5">
             <span className="text-lg opacity-70">✵</span>
-            <span>Get Your Reading</span>
+            <span>See Your Twitter Fate</span>
             <span className="text-lg opacity-70">✵</span>
           </div>
         </a>
