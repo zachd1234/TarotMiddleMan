@@ -1,6 +1,7 @@
 "use client";
 
 import { useState } from 'react';
+import { track } from '@vercel/analytics';
 import { getCardUrl } from '@/lib/tarot-cards';
 import type { TarotReadingPayload } from '@/lib/compression';
 
@@ -65,6 +66,7 @@ export default function TarotClient({ data }: { data: TarotReadingPayload }) {
         <a
           href="https://wabi.ai/@zach_derhake/twitter-tarot-1042500?_v=4"
           className="relative group block w-full max-w-sm pointer-events-auto"
+          onClick={() => track('unveil_twitter_fate_click', { username: data.username })}
         >
           {/* Outer glow aura */}
           <div className="absolute -inset-1 bg-gradient-to-r from-yellow-600 to-yellow-400 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
