@@ -12,69 +12,91 @@ export default function TarotClient({ data }: { data: TarotReadingPayload }) {
   const activeCard = expandedCardIdx !== null ? data.cards[expandedCardIdx] : null;
 
   return (
-    <div className="min-h-screen bg-[#0c0c0c] text-white pb-32 relative">
-      {/* Profile Header */}
-      <div className="flex flex-col items-center pt-16 px-6">
-        <div className="w-24 h-24 rounded-full border border-yellow-600/50 overflow-hidden mb-4 shadow-[0_0_15px_rgba(202,138,4,0.3)]">
-          <img
-            src={data.profilePic || "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"}
-            alt={data.username}
-            className="w-full h-full object-cover"
-          />
+    <div className="min-h-screen bg-[#0a0a0a] text-gray-300 pb-20 relative font-mono selection:bg-red-900 selection:text-white">
+      {/* Main Container */}
+      <div className="max-w-md mx-auto pt-16 px-6">
+        
+        {/* CLASSIFIED Badge */}
+        <div className="inline-block border border-red-800 text-red-700 text-xs px-2 py-1 uppercase tracking-widest mb-8 bg-red-950/20">
+          Classified
         </div>
-        <h1 className="text-3xl font-serif font-bold mb-2">{data.username}</h1>
-        <p className="text-gray-400 text-sm italic text-center max-w-sm mb-6 px-4">
-          {data.twitterBio}
-        </p>
+
+        {/* Profile Section */}
+        <div className="flex flex-row items-start gap-4 mb-6">
+          <div className="w-20 h-20 shrink-0 border border-gray-700 bg-gray-900 overflow-hidden">
+            <img
+              src={data.profilePic || "https://abs.twimg.com/sticky/default_profile_images/default_profile_400x400.png"}
+              alt={data.username}
+              className="w-full h-full object-cover grayscale opacity-80"
+            />
+          </div>
+          <div className="flex flex-col min-w-0">
+            <h1 className="text-xl font-bold truncate text-gray-200 line-clamp-1">{data.username}</h1>
+            <h2 className="text-sm text-gray-500 mb-2 truncate">
+              {data.username.startsWith('@') ? data.username.slice(1).replace(/_/g, '') : data.username.replace(/_/g, '')}
+            </h2>
+            <p className="text-xs text-gray-400 leading-snug line-clamp-3">
+              {data.twitterBio}
+            </p>
+          </div>
+        </div>
+
 
         {/* Emojis */}
-        <div className="flex gap-2 text-2xl mb-8">
-          🤖 🚀 📱 🎲 🧠
+        <div className="flex gap-2 text-xl mb-8">
+          🚀 💻 📖 🤖 🧢
         </div>
 
         {/* AI Summary */}
-        <p className="text-lg italic text-center font-serif leading-relaxed px-4 mb-16 text-gray-200">
-          {data.aiSummary}
-        </p>
+        <div className="border-l-2 border-red-700 pl-4 py-1 mb-10">
+          <p className="text-sm leading-relaxed text-gray-300">
+            {data.aiSummary}
+          </p>
+        </div>
+
+        <div className="text-[10px] text-gray-600 tracking-[0.2em] mb-4 uppercase">
+          Tap to open file
+        </div>
       </div>
 
       {/* Cards Carousel */}
       <div
-        className="flex overflow-x-auto gap-6 px-6 snap-x snap-mandatory pb-8"
+        className="flex overflow-x-auto gap-4 px-6 snap-x snap-mandatory pb-8"
         style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
       >
         {data.cards.map((card, idx) => (
           <button
             key={idx}
             onClick={() => setExpandedCardIdx(idx)}
-            className="snap-center shrink-0 w-[280px] flex flex-col transition-all duration-300 ease-in-out cursor-pointer hover:scale-105 hover:ring-2 hover:ring-yellow-500/30 rounded-xl"
+            className="snap-center shrink-0 w-[260px] relative transition-transform duration-300 hover:scale-[1.02]"
           >
-            <img
-              src={getCardUrl(card.name)}
-              alt={card.name}
-              className="w-full h-auto rounded-xl shadow-[0_10px_30px_rgba(0,0,0,0.8)] border border-white/5 pointer-events-none"
-            />
-            <div className="text-center mt-3 text-sm font-semibold text-gray-400 uppercase tracking-widest pointer-events-none">
-              Tap to reveal
+            <div className="w-full h-auto bg-[#111] p-[2px] border border-gray-800 relative">
+              <img
+                src={getCardUrl(card.name)}
+                alt={card.name}
+                className="w-full h-auto pointer-events-none"
+              />
+               <div className="absolute bottom-[2px] right-[2px] bg-red-700/90 text-white text-[10px] px-2 py-1 tracking-widest font-bold pointer-events-none backdrop-blur-sm shadow-[-2px_-2px_10px_rgba(185,28,28,0.3)]">
+                OPEN FILE
+              </div>
             </div>
           </button>
         ))}
       </div>
 
       {/* Sticky Wabi CTA */}
-      <div className="fixed bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#0c0c0c] via-[#0c0c0c]/90 to-transparent flex justify-center pb-8 border-t border-white/5 backdrop-blur-md pointer-events-none z-10">
+      <div className="fixed bottom-0 left-0 w-full p-6 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/90 to-transparent flex justify-center pb-8 border-t border-gray-800/50 backdrop-blur-md pointer-events-none z-10">
         <a
-          href="https://wabi.ai/@zach_derhake/twitter-tarot-1042500?_v=4"
-          className="relative group block w-full max-w-sm pointer-events-auto"
+          href="https://wabi.ai/@zach_derhake/twitter-tarot-1042500?_v=7"
           onClick={() => track('unveil_twitter_fate_click', { username: data.username })}
+          className="relative group block w-full max-w-sm pointer-events-auto"
         >
-          {/* Outer glow aura */}
-          <div className="absolute -inset-1 bg-gradient-to-r from-yellow-600 to-yellow-400 rounded-full blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
+          {/* Outer glow aura - changed to red to match dossier theme */}
+          <div className="absolute -inset-1 bg-gradient-to-r from-red-800 to-red-500 rounded-none blur opacity-25 group-hover:opacity-50 transition duration-1000 group-hover:duration-200"></div>
 
           {/* Main button body */}
-          <div className="relative flex items-center justify-center gap-3 bg-[#0c0c0c] border border-yellow-600/50 text-yellow-500 text-center font-serif font-bold uppercase tracking-widest text-sm md:text-base py-4 rounded-full transition-all duration-300 group-hover:bg-[#151515] group-hover:text-yellow-400 group-hover:-translate-y-0.5">
+          <div className="relative flex items-center justify-center gap-3 bg-[#111] border border-red-800 text-red-500 text-center font-mono font-bold uppercase tracking-widest text-sm md:text-base py-4 transition-all duration-300 group-hover:bg-[#1a1111] group-hover:text-red-400 group-hover:-translate-y-0.5">
             <span>UNVEIL YOUR TWITTER FATE</span>
-            <span className="text-lg">🔥</span>
           </div>
         </a>
       </div>
@@ -82,12 +104,12 @@ export default function TarotClient({ data }: { data: TarotReadingPayload }) {
       {/* Modal Popup overlay */}
       {activeCard && (
         <div
-          className="fixed inset-0 z-50 flex flex-col bg-black/95 backdrop-blur-md overflow-y-auto"
+          className="fixed inset-0 z-50 flex flex-col bg-[#0a0a0a]/98 backdrop-blur-md overflow-y-auto"
           onClick={() => setExpandedCardIdx(null)}
         >
           {/* Close button */}
           <button
-            className="absolute top-6 right-6 w-10 h-10 bg-white/10 hover:bg-white/20 rounded-full flex items-center justify-center text-white z-50 transition-colors"
+            className="absolute top-6 right-6 w-10 h-10 border border-gray-700 bg-[#111] hover:bg-[#222] flex items-center justify-center text-gray-400 z-50 transition-colors rounded-full"
             onClick={(e) => { e.stopPropagation(); setExpandedCardIdx(null); }}
           >
             ✕
@@ -96,24 +118,32 @@ export default function TarotClient({ data }: { data: TarotReadingPayload }) {
           {/* Modal Content */}
           <div
             className="w-full max-w-lg mx-auto p-6 pt-20 pb-32 flex flex-col items-center animate-in fade-in slide-in-from-bottom-8 duration-300"
-            onClick={(e) => e.stopPropagation()} // Prevent close when clicking content
+            onClick={(e) => e.stopPropagation()}
           >
-            <img
-              src={getCardUrl(activeCard.name)}
-              alt={activeCard.name}
-              className="w-full h-auto rounded-2xl shadow-[0_20px_50px_rgba(0,0,0,1)] border border-white/10 mb-8"
-            />
+            <div className="relative border border-gray-800 bg-[#111] p-1 w-full mb-8 shadow-[0_0_30px_rgba(185,28,28,0.05)]">
+              <img
+                src={getCardUrl(activeCard.name)}
+                alt={activeCard.name}
+                className="w-full h-auto"
+              />
+              <div className="absolute top-1 left-1 bg-red-950/80 text-red-500 text-[10px] px-2 py-1 uppercase tracking-widest font-bold backdrop-blur-md border border-red-800/30">
+                FILE: {activeCard.name.replace(/([a-z])([A-Z])/g, '$1 $2')}
+              </div>
+            </div>
 
-            <p className="text-gray-200 text-base md:text-lg leading-relaxed font-serif px-2 mb-10 w-full">
-              {activeCard.text}
-            </p>
+            <div className="border-l-2 border-red-700 pl-4 py-1 mb-10 w-full relative">
+              <p className="text-gray-300 text-sm leading-relaxed">
+                {activeCard.text}
+              </p>
+            </div>
 
-            {/* Verdict Box strictly for the modal */}
-            <div className="bg-[#151515] w-full p-6 rounded-2xl border border-white/10 flex flex-col items-center text-center shadow-inner">
-              <span className="text-xs tracking-[0.2em] text-gray-500 uppercase mb-4 block font-mono">
-                The Verdict
+            {/* Verdict Box */}
+            <div className="bg-[#111] w-full p-5 border border-gray-800 flex flex-col items-start relative overflow-hidden">
+               <div className="absolute top-0 left-0 w-full h-[1px] bg-gradient-to-r from-red-800 to-transparent"></div>
+              <span className="text-[10px] tracking-widest text-[#b91c1c] uppercase mb-3 block">
+                // VERDICT //
               </span>
-              <p className="text-base font-bold uppercase tracking-widest leading-relaxed text-gray-100">
+              <p className="text-sm uppercase tracking-wider leading-relaxed text-gray-200">
                 {activeCard.verdict}
               </p>
             </div>
