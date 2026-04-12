@@ -1,6 +1,6 @@
 export const tarotCards: Record<string, string> = {
   "startupbro": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1775587221/ChatGPT_Image_Apr_7_2026_02_36_47_PM_dykwrb.png",
-  "theinfluencer": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1769291048/theInfluencer_yzyovm.png",
+  "theinfluencer": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1776009058/The_influencer_The_Empress_txotol.png",
   "thevc": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1769291079/TheVC_cukm3w.png",
   "thegyminfluencer": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1769291099/TheGymfluencer_d6nnuh.png",
   "thematch": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1769291119/TheMatch_u5185g.png",
@@ -10,7 +10,7 @@ export const tarotCards: Record<string, string> = {
   "themaincharacter": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1769291221/TheMainCharacter_idmqms.png",
   "thealgospin": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1769291239/TheAlgoSpin_khkn5q.png",
   "thenpc": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1769291257/TheNPC_zdbtp9.png",
-  "thepodcaster": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1775587941/The_podcaster_s_oracle_reading_om6ljf.png",
+  "thepodcaster": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1776008143/ChatGPT_Image_Apr_12_2026_11_35_36_AM_yeugun.png",
   "theipadkid": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1769291296/theIpadKid_pb3wzv.png",
   "thetherapist": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1769291314/TheTherapist_ouk1uc.png",
   "forbes30u30": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1775589389/Justice_confined_in_Forbes_30_under_30_n6rmgf.png",
