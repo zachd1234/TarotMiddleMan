@@ -33,7 +33,7 @@ export async function GET(
             alignItems: 'center',
             justifyContent: 'flex-start',
             backgroundColor: '#0a0a0a',
-            padding: '60px 40px',
+            padding: '40px 40px',
             fontFamily: '"Roboto Mono"',
             color: '#d1d5db',
           }}
@@ -66,8 +66,8 @@ export async function GET(
                 src={getCardUrl(card.name)}
                 alt={card.name}
                 style={{
-                  width: '260px',
-                  height: '445px',
+                  width: '210px',
+                  height: '359px',
                   border: '2px solid #b91c1c',
                   boxShadow: '0 8px 30px rgba(185, 28, 28, 0.25)', // Red glow shadow
                 }}
