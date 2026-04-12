@@ -40,10 +40,10 @@ export async function GET(
         >
           {/* Header Text */}
           <div style={{ display: 'flex', flexDirection: 'column', alignItems: 'center', marginBottom: '40px' }}>
-            <div style={{ fontSize: 80, color: '#dc2626', lineHeight: 1, letterSpacing: '0.05em' }}>
+            <div style={{ fontSize: 64, color: '#dc2626', lineHeight: 1, letterSpacing: '0.05em' }}>
               {username}
             </div>
-            <div style={{ fontSize: 48, color: '#9ca3af', marginTop: '16px', opacity: 0.9, letterSpacing: '0.1em' }}>
+            <div style={{ fontSize: 36, color: '#9ca3af', marginTop: '16px', opacity: 0.9, letterSpacing: '0.1em' }}>
               {data.shortSummary || "CLASSIFIED DOSSIER"}
             </div>
           </div>
@@ -66,8 +66,8 @@ export async function GET(
                 src={getCardUrl(card.name)}
                 alt={card.name}
                 style={{
-                  width: '210px',
-                  height: '359px',
+                  width: '240px',
+                  height: '411px',
                   border: '2px solid #b91c1c',
                   boxShadow: '0 8px 30px rgba(185, 28, 28, 0.25)', // Red glow shadow
                 }}
