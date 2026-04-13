@@ -1,6 +1,6 @@
 export const tarotCards: Record<string, string> = {
   "startupbro": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1775587221/ChatGPT_Image_Apr_7_2026_02_36_47_PM_dykwrb.png",
-  "theinfluencer": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1776009058/The_influencer_The_Empress_txotol.png",
+  "theinfluencer": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1776023607/ChatGPT_Image_Apr_12_2026_03_53_07_PM_drujwf.png",
   "thevc": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1769291079/TheVC_cukm3w.png",
   "thegyminfluencer": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1769291099/TheGymfluencer_d6nnuh.png",
   "thematch": "https://res.cloudinary.com/dh9y9v9kg/image/upload/v1769291119/TheMatch_u5185g.png",

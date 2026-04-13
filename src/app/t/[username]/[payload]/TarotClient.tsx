@@ -16,10 +16,6 @@ export default function TarotClient({ data }: { data: TarotReadingPayload }) {
       {/* Main Container */}
       <div className="max-w-md mx-auto pt-16 px-6">
         
-        {/* CLASSIFIED Badge */}
-        <div className="inline-block border border-red-800 text-red-700 text-xs px-2 py-1 uppercase tracking-widest mb-8 bg-red-950/20">
-          Classified
-        </div>
 
         {/* Profile Section */}
         <div className="flex flex-row items-start gap-4 mb-6">
@@ -76,9 +72,7 @@ export default function TarotClient({ data }: { data: TarotReadingPayload }) {
                 alt={card.name}
                 className="w-full h-auto pointer-events-none"
               />
-               <div className="absolute bottom-[2px] right-[2px] bg-red-700/90 text-white text-[10px] px-2 py-1 tracking-widest font-bold pointer-events-none backdrop-blur-sm shadow-[-2px_-2px_10px_rgba(185,28,28,0.3)]">
-                OPEN FILE
-              </div>
+
             </div>
           </button>
         ))}
@@ -126,9 +120,7 @@ export default function TarotClient({ data }: { data: TarotReadingPayload }) {
                 alt={activeCard.name}
                 className="w-full h-auto"
               />
-              <div className="absolute top-1 left-1 bg-red-950/80 text-red-500 text-[10px] px-2 py-1 uppercase tracking-widest font-bold backdrop-blur-md border border-red-800/30">
-                FILE: {activeCard.name.replace(/([a-z])([A-Z])/g, '$1 $2')}
-              </div>
+
             </div>
 
             <div className="border-l-2 border-red-700 pl-4 py-1 mb-10 w-full relative">
