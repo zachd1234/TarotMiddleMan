@@ -5,6 +5,17 @@ import { track } from '@vercel/analytics';
 import { getCardUrl } from '@/lib/tarot-cards';
 import type { TarotReadingPayload } from '@/lib/compression';
 
+function formatText(text: string | undefined | null) {
+  if (!text) return null;
+  const parts = text.split(/(\*\*.*?\*\*)/g);
+  return parts.map((part, idx) => {
+    if (part.startsWith('**') && part.endsWith('**')) {
+      return <strong key={idx} className="font-bold text-white">{part.slice(2, -2)}</strong>;
+    }
+    return part;
+  });
+}
+
 export default function TarotClient({ data }: { data: TarotReadingPayload }) {
   // null means no popup is open
   const [expandedCardIdx, setExpandedCardIdx] = useState<number | null>(null);
@@ -46,7 +57,7 @@ export default function TarotClient({ data }: { data: TarotReadingPayload }) {
         {/* AI Summary */}
         <div className="border-l-2 border-red-700 pl-4 py-1 mb-10">
           <p className="text-sm leading-relaxed text-gray-300">
-            {data.aiSummary}
+            {formatText(data.aiSummary)}
           </p>
         </div>
 
@@ -125,7 +136,7 @@ export default function TarotClient({ data }: { data: TarotReadingPayload }) {
 
             <div className="border-l-2 border-red-700 pl-4 py-1 mb-10 w-full relative">
               <p className="text-gray-300 text-sm leading-relaxed">
-                {activeCard.text}
+                {formatText(activeCard.text)}
               </p>
             </div>
 
@@ -136,7 +147,7 @@ export default function TarotClient({ data }: { data: TarotReadingPayload }) {
                 // VERDICT //
               </span>
               <p className="text-sm uppercase tracking-wider leading-relaxed text-gray-200">
-                {activeCard.verdict}
+                {formatText(activeCard.verdict)}
               </p>
             </div>
           </div>
